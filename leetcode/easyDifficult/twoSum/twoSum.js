@@ -3,7 +3,7 @@
  * @param {number} target
  * @return {number[]}
  */
-const twoSum = (nums, target) => {
+const twoSumSlow = (nums, target) => {
     const answer = [0, 1];
     for (let i = 0; i < nums.length; i++) {
         for (let j = i + 1; j < nums.length; j++) {
@@ -16,4 +16,16 @@ const twoSum = (nums, target) => {
     return answer;
 };
 
-console.log(twoSum([3, 3], 6));
+const twoSumFast = (nums, target) => {
+    const answer = [0, 1];
+    const list = {};
+    for (let i = 0; i < nums.length; i++) {
+        if (target - nums[i] in list) {
+            answer[0] = list[target - nums[i]];
+            answer[1] = i;
+            return answer;
+        }
+        list[nums[i]] = i;
+    }
+    return answer;
+};
