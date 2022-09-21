@@ -23,7 +23,7 @@ rl.on("line", (line) => {
  * @returns {number} число от 0 до 7 включительно — итоговый вердикт системы
  */
 
-let taskA = (r, i, c) => {
+const taskA = (r, i, c) => {
     if (i === 0) {
         if (r !== 0) {
             return 3;
