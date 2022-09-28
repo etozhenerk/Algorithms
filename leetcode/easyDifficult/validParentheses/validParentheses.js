@@ -22,5 +22,3 @@ const isValid = (string) => {
 
     return answer;
 };
-
-isValid("(]");

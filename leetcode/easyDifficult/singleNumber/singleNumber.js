@@ -26,4 +26,3 @@ const singleNumber = (nums) => {
     return ans;
 };
 
-console.log(singleNumber([1]));

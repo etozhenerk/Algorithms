@@ -9,5 +9,3 @@ const containsDuplicate = (nums) => {
 
   return nums.length !== set.size;
 };
-
-console.log(containsDuplicate([1, 2, 3, 4]));

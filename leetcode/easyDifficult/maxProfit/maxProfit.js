@@ -21,4 +21,3 @@ const maxProfit = (prices) => {
     return max;
 };
 
-console.log(maxProfit([2, 4, 1]));
