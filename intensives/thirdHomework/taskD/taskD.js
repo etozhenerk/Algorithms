@@ -19,7 +19,7 @@ rl.on("line", (line) => {
  *
  * @param {string} counts числа N (2 < N < 10001) – количество стойл и K (1 < K < N) – количество коров
  * @param {string} coordinates  N натуральных чисел в порядке возрастания – координаты стойл
- * @returns {string} количество положительных на отрезке  .
+ * @returns {string} наибольшее возможное допустимое расстояние.
  */
 
 const taskD = (counts, coordinates) => {
