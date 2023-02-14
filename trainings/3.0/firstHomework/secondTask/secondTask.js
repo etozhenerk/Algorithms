@@ -1,18 +1,17 @@
-const { off } = require("process");
 const readline = require("readline");
 const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout,
+  input: process.stdin,
+  output: process.stdout,
 });
 
 const lines = [];
 rl.on("line", (line) => {
-    lines.push(line);
+  lines.push(line);
 }).on("close", () => {
-    const [k, s] = lines;
-    const result = secondTask(k, s);
+  const [k, s] = lines;
+  const result = secondTask(k, s);
 
-    rl.output.write(result.toString());
+  rl.output.write(result.toString());
 });
 
 /**
@@ -24,7 +23,7 @@ rl.on("line", (line) => {
  */
 
 const secondTask = (k, s) => {
-    const letters = {};
+  const letters = {};
 
-    let max = 1;
+  let max = 1;
 };
