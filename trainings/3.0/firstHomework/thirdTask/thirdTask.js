@@ -22,40 +22,28 @@ rl.on("line", (line) => {
  */
 
 const thirdTask = (nArrey, kArrey) => {
-  const set = new Set();
+  const set = new Set(nArrey);
 
-  nArrey.forEach((n) => {
-    set.add(Number(n));
-  });
+  const setArray = [...set].map((a) => parseInt(a));
 
-  const setArray = [...set];
   setArray.sort((a, b) => a - b);
 
   kArrey.forEach((k) => {
-    const i = lbinsearch(0, setArray.length - 1, check, [setArray, Number(k)]);
-    if (setArray[i] < k) {
-      rl.output.write((i + 1).toString());
-      rl.output.write("\n");
+    k = parseInt(k);
+    let l = 0;
+    let r = setArray.length - 1;
+    while (l < r) {
+      const m = Math.floor((l + r + 1) / 2);
+      if (setArray[m] < k) {
+        l = m;
+      } else {
+        r = m - 1;
+      }
+    }
+    if (setArray[l] < k) {
+      rl.output.write(`${l + 1}\n`);
     } else {
-      rl.output.write("0");
-      rl.output.write("\n");
+      rl.output.write("0\n");
     }
   });
-};
-
-const check = (index, params) => {
-  const [seq, x] = params;
-  return seq[index] < x;
-};
-
-const lbinsearch = (l, r, check, checkparams) => {
-  while (l < r) {
-    const m = Math.floor((l + r + 1) / 2);
-    if (check(m, checkparams)) {
-      l = m;
-    } else {
-      r = m - 1;
-    }
-  }
-  return l;
 };

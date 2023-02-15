@@ -21,10 +21,11 @@ rl.on("line", (line) => {
  */
 
 const eighthTask = (cells) => {
-  let minx = Number(cells[0][0]);
-  let miny = Number(cells[0][2]);
-  let maxx = Number(cells[0][0]);
-  let maxy = Number(cells[0][2]);
+  const first = cells[0].split(" ");
+  let minx = Number(first[0]);
+  let miny = Number(first[1]);
+  let maxx = Number(first[0]);
+  let maxy = Number(first[1]);
 
   cells.forEach((cell) => {
     let [x, y] = cell.split(" ");
