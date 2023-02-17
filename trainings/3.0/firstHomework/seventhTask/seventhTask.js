@@ -27,19 +27,27 @@ const seventhTask = (a, b, c) => {
   b = b.split(":").map((n) => parseInt(n));
   c = c.split(":").map((n) => parseInt(n));
 
-  const secInM = 60;
-  const secInH = secInM * 60;
-  const secInD = secInH * 24;
+  const aSec = a[0] * 3600 + a[1] * 60 + a[2];
+  const bSec = b[0] * 3600 + b[1] * 60 + b[2];
+  let cSec = c[0] * 3600 + c[1] * 60 + c[2];
 
-  const aTimestamp = a[0] * 3600 + a[1] * 60 + a[2];
-  const bTimestamp = b[0] * 3600 + b[1] * 60 + b[2];
-  const cTimestamp = c[0] * 3600 + c[1] * 60 + c[2];
+  if (cSec < aSec) {
+    cSec = cSec + 24 * 3600;
+  }
 
-  const result = Math.abs(Math.round((cSec - aSec) / 2)) + bSec;
+  const result = Math.round((cSec - aSec) / 2) + bSec;
 
-  let hours = Math.round(result / 3600).toString();
-  let mins = Math.round((result - hours * 3600) / 60).toString();
-  let seconds = Math.round(result - hours * 3600 - mins * 60).toString();
+  let hours = Math.floor(result / 3600);
+
+  let mins = Math.floor((result - hours * 3600) / 60);
+
+  let seconds = Math.floor(result - hours * 3600 - mins * 60).toString();
+
+  if (hours > 23) {
+    hours = hours - 24;
+  }
+  hours = hours.toString();
+  mins = mins.toString();
 
   hours = hours.length === 1 ? 0 + hours : hours;
   mins = mins.length === 1 ? 0 + mins : mins;
