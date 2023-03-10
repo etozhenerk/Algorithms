@@ -19,6 +19,19 @@ const connectivityComponents = (nm, ribs) => {
   const colors = {};
   let error = 0;
 
+  const dfs = (now, color) => {
+    visited[now] = true;
+
+    for (let index = 0; index < graph[now].length; index++) {
+      if (!visited[graph[now][index]]) {
+        dfs(graph[now][index], 3 - color);
+        ans.push(graph[now][index]);
+      } else if (colors[graph[now][index]] === colors[now]) {
+        error = 1;
+      }
+    }
+  };
+
   const idfs = (now, color) => {
     const stack = [...graph[now]];
     while (stack.length > 0) {
@@ -33,7 +46,6 @@ const connectivityComponents = (nm, ribs) => {
             stack.push(graph[curr][index]);
           }
         }
-        ans.push(curr);
       } else if (colors[curr] === colors[now]) {
         error = 1;
       }
@@ -57,19 +69,12 @@ const connectivityComponents = (nm, ribs) => {
     if (!visited[key]) {
       visited[key] = true;
       colors[key] = 1;
-      idfs(parseInt(key), 1);
+      dfs(parseInt(key), 1);
       ans.push(parseInt(key));
     }
   }
 
-  console.log(ans);
-  console.log(visited);
-
-  if (error) {
-    fs.writeFileSync("output.txt", "-1");
-  } else {
-    fs.writeFileSync("output.txt", ans.reverse().join(" "));
-  }
+  fs.writeFileSync("output.txt", ans.reverse().join(" "));
 };
 
 connectivityComponents(nm, ribs);
