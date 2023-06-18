@@ -9,7 +9,7 @@ rl.on("line", (line) => {
   lines.push(line);
 }).on("close", () => {
   const [k, ...cells] = lines;
-  const result = findMin(cells);
+  const result = eighthTask(cells);
 
   rl.output.write(result);
 });
@@ -20,7 +20,7 @@ rl.on("line", (line) => {
  * @returns {string} координаты левого нижнего и правого верхнего углов прямоугольника.
  */
 
-const findMin = (cells) => {
+const eighthTask = (cells) => {
   const first = cells[0].split(" ");
   let minx = Number(first[0]);
   let miny = Number(first[1]);
