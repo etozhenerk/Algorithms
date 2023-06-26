@@ -10,19 +10,37 @@ numbers = numbers.map((n) => parseInt(n));
  */
 
 const getMaxGarlands = (n, numbers) => {
-    const diff = n > numbers.length ? n - numbers.length : n;
-    const sortedNumbers = numbers.map((item, i) => [item, i + 1]).sort();
-    let minCount = n > numbers.length ? Math.min(...numbers) : sortedNumbers[sortedNumbers.length - 1][0];
-    let ans = n > numbers.length ? numbers.map((_, i) => i + 1) : [];
+  let l = 1;
+  let r = Math.max(...numbers);
 
-    for (let index = sortedNumbers.length - 1; index >= sortedNumbers.length - diff; index--) {
-        if (sortedNumbers[index][0] > 0) {
-            minCount = Math.min(minCount, sortedNumbers[index][0]);
-            ans.push(sortedNumbers[index][1]);
-        }
+  while (l < r) {
+    let m = Math.floor((l + r + 1) / 2);
+
+    if (check(m, numbers, n)) {
+      l = m;
+    } else {
+      r = m - 1;
     }
-    // ans.sort();
-    fs.writeFileSync("output.txt", `${minCount}\n${ans.join("\n")}`);
+  }
+  const indexes = [];
+  for (let i = 0; i < numbers.length; i++) {
+    const element = Math.floor(numbers[i] / l);
+    for (let j = 0; j < element; j++) {
+      if (indexes.length < n) {
+        indexes.push(i + 1);
+      }
+    }
+  }
+
+  fs.writeFileSync("output.txt", `${l}\n${indexes.join("\n")}`);
+};
+
+const check = (m, numbers, n) => {
+  const result = numbers
+    .map((item) => Math.floor(item / m))
+    .filter((item) => item !== 0)
+    .reduce((prev, next) => prev + next, 0);
+  return result >= n;
 };
 
 getMaxGarlands(n, numbers);
