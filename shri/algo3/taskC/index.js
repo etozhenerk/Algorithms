@@ -38,7 +38,6 @@ const getMaxGarlands = (n, numbers) => {
 const check = (m, numbers, n) => {
   const result = numbers
     .map((item) => Math.floor(item / m))
-    .filter((item) => item !== 0)
     .reduce((prev, next) => prev + next, 0);
   return result >= n;
 };
